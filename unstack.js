@@ -5,9 +5,14 @@
 	function UnstackX( wrapper ) {
 
 		var Labels = [];
-		wrapper.find( '>table.unstack-x>tbody>tr:first-child>*' ).each( function( i ) {
+		wrapper.find( '>table.unstack-x>thead>tr:first-child>*' ).each( function( i ) {
 			Labels[ i ] = $( this ).html();
 		} );
+		if( Labels.length < 1 ) {
+			wrapper.find( '>table.unstack-x>tbody>tr:first-child>*' ).each( function( i ) {
+				Labels[ i ] = $( this ).html();
+			} );
+		}
 
 		var GroupListEl = $( '<ul/>' ).addClass( 'unstack-list' ).appendTo( wrapper );
 		wrapper.find( '>table.unstack-x>tbody>tr:not(:first-child)' ).each( function( i ) {
